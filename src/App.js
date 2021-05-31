@@ -1,5 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import { DataProvider } from "./contexts/DataContext";
+import { LikedProvider } from "./contexts/LikedContext";
 import Nav from "./components/Nav";
 import VideoList from "./components/VideoList";
 import VideoPage from "./components/VideoPage";
@@ -12,14 +14,18 @@ function App() {
     return (
         <div className="App">
             <Nav />
-            <Routes>
-                <Route path="/" element={<VideoList />} />
-                <Route path="/videos/:id" element={<VideoPage />} />
-                <Route path="/liked" element={<Liked />} />
-                <Route path="/later" element={<WatchLater />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<SignUp />} />
-            </Routes>
+            <DataProvider>
+                <LikedProvider>
+                    <Routes>
+                        <Route path="/" element={<VideoList />} />
+                        <Route path="/videos/:id" element={<VideoPage />} />
+                        <Route path="/liked" element={<Liked />} />
+                        <Route path="/later" element={<WatchLater />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" element={<SignUp />} />
+                    </Routes>
+                </LikedProvider>
+            </DataProvider>
         </div>
     );
 }
