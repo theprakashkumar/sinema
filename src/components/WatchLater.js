@@ -1,5 +1,9 @@
+import { useContext } from "react";
+import { WatchLaterContext } from "../contexts/WatchLaterContext";
+
 const WatchLater = () => {
-    return <div>Watch Later Page</div>;
+    const { state, dispatch } = useContext(WatchLaterContext);
+    return <div>Watch Later {state[0].id}Page</div>;
 };
 
 export default WatchLater;

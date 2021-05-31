@@ -2,10 +2,12 @@ import "./VideoPage.css";
 import { useParams } from "react-router";
 import { useContext } from "react";
 import { LikedContext } from "../contexts/LikedContext";
+import { WatchLaterContext } from "../contexts/WatchLaterContext";
 
 const VideoPage = () => {
     const { id } = useParams();
-    const { state, dispatch } = useContext(LikedContext);
+    const { dispatch: likedDispatch } = useContext(LikedContext);
+    const { dispatch: watchLaterDispatch } = useContext(WatchLaterContext);
     return (
         <div className="video-responsive">
             <iframe
@@ -21,11 +23,13 @@ const VideoPage = () => {
             {/* ! Put Video Details Here */}
 
             <button
-                onClick={() => dispatch({ type: "ADD", payload: { id: id } })}
+                onClick={() => likedDispatch({ type: "ADD", payload: { id: id } })}
             >
                 Like
             </button>
-            <button>
+            <button
+                onClick={() => watchLaterDispatch({ type: "ADD", payload: { id: id } })}
+            >
                 Watch Later
             </button>
         </div>
