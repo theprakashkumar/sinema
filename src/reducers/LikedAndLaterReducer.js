@@ -4,6 +4,8 @@ const LikedAndLaterReducer = (state, action) => {
             return [...state, { id: action.payload.id }];
         case "REMOVE":
             return state.filter((video) => video.id !== action.payload.id);
+        default:
+            return state;
     }
 };
 
