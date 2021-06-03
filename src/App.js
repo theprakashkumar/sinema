@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { DataProvider } from "./contexts/DataContext";
 import { LikedProvider } from "./contexts/LikedContext";
 import { WatchLaterContextProvider } from "./contexts/WatchLaterContext";
+import { AuthProvider } from "./contexts/AuthContext";
 import Nav from "./components/Nav";
 import VideoList from "./components/VideoList";
 import VideoPage from "./components/VideoPage";
@@ -18,14 +19,19 @@ function App() {
             <DataProvider>
                 <LikedProvider>
                     <WatchLaterContextProvider>
-                        <Routes>
-                            <Route path="/" element={<VideoList />} />
-                            <Route path="/videos/:id" element={<VideoPage />} />
-                            <Route path="/liked" element={<Liked />} />
-                            <Route path="/later" element={<WatchLater />} />
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/signup" element={<SignUp />} />
-                        </Routes>
+                        <AuthProvider>
+                            <Routes>
+                                <Route path="/" element={<VideoList />} />
+                                <Route
+                                    path="/videos/:id"
+                                    element={<VideoPage />}
+                                />
+                                <Route path="/liked" element={<Liked />} />
+                                <Route path="/later" element={<WatchLater />} />
+                                <Route path="/login" element={<Login />} />
+                                <Route path="/signup" element={<SignUp />} />
+                            </Routes>
+                        </AuthProvider>
                     </WatchLaterContextProvider>
                 </LikedProvider>
             </DataProvider>
