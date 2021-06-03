@@ -4,6 +4,7 @@ import { DataProvider } from "./contexts/DataContext";
 import { LikedProvider } from "./contexts/LikedContext";
 import { WatchLaterContextProvider } from "./contexts/WatchLaterContext";
 import { AuthProvider } from "./contexts/AuthContext";
+import PrivateRoute from "./utils/PrivateRoutes";
 import Nav from "./components/Nav";
 import VideoList from "./components/VideoList";
 import VideoPage from "./components/VideoPage";
@@ -26,8 +27,18 @@ function App() {
                                     path="/videos/:id"
                                     element={<VideoPage />}
                                 />
-                                <Route path="/liked" element={<Liked />} />
-                                <Route path="/later" element={<WatchLater />} />
+                                {/* <Route path="/liked" element={<Liked />} />
+                                <Route path="/later" element={<WatchLater />} /> */}
+
+                                <PrivateRoute
+                                    path="/liked"
+                                    element={<Liked />}
+                                />
+                                <PrivateRoute
+                                    path="/later"
+                                    element={<WatchLater />}
+                                />
+
                                 <Route path="/login" element={<Login />} />
                                 <Route path="/signup" element={<SignUp />} />
                             </Routes>
