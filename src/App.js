@@ -6,6 +6,7 @@ import { WatchLaterContextProvider } from "./contexts/WatchLaterContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import PrivateRoute from "./utils/PrivateRoutes";
 import Nav from "./components/Nav";
+import Home from "./components/Home";
 import VideoList from "./components/VideoList";
 import VideoPage from "./components/VideoPage";
 import Liked from "./components/Liked";
@@ -23,7 +24,8 @@ function App() {
                     <WatchLaterContextProvider>
                         <AuthProvider>
                             <Routes>
-                                <Route path="/" element={<VideoList />} />
+                                <Route path="/" element={<Home />} />
+                                <Route path="/videos" element={<VideoList />} />
                                 <Route
                                     path="/videos/:id"
                                     element={<VideoPage />}
@@ -42,7 +44,6 @@ function App() {
 
                                 <Route path="/login" element={<Login />} />
                                 <Route path="/signup" element={<SignUp />} />
-                                
                             </Routes>
                         </AuthProvider>
                     </WatchLaterContextProvider>
