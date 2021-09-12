@@ -12,6 +12,7 @@ import Liked from "./components/Liked";
 import WatchLater from "./components/WatchLater";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+import Footer from "./components/Footer";
 
 function App() {
     return (
@@ -41,11 +42,13 @@ function App() {
 
                                 <Route path="/login" element={<Login />} />
                                 <Route path="/signup" element={<SignUp />} />
+                                
                             </Routes>
                         </AuthProvider>
                     </WatchLaterContextProvider>
                 </LikedProvider>
             </DataProvider>
+            <Footer />
         </div>
     );
 }
