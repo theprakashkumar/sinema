@@ -14,7 +14,6 @@ const SignUp = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         signUp(userDetails);
-        setUserDetails(initialUserDetails);
     };
 
     const handleChange = (e) => {

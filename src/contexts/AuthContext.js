@@ -32,8 +32,6 @@ export const AuthProvider = ({ children }) => {
                     password,
                 });
                 if (response.data.success) {
-                    console.log({ ...response.data });
-                    console.log(response.data.name);
                     setLogin(true);
                     setUserDetails({
                         userId: response.data.id,
@@ -72,12 +70,9 @@ export const AuthProvider = ({ children }) => {
 
     const signUp = async (userDetail) => {
         try {
-            const response = await axios.post(
-                "http://localhost:5000/users/signup",
-                {
-                    ...userDetail,
-                }
-            );
+            const response = await axios.post("/users/signup", {
+                ...userDetail,
+            });
             if (response.data.success) {
                 console.log("New User Created!");
                 // ! USER NEED TO BE LOGGED IN HERE!
