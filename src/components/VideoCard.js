@@ -2,11 +2,11 @@ import "./VideoCard.css";
 import { Link } from "react-router-dom";
 
 const VideoCard = ({ props }) => {
-    const { id, name, thumbnail, views, creator, embedId } = props;
-    console.log(props);
+    const { _id, name, thumbnail, views, creator, embedId } = props;
+    console.log("prop", props);
     return (
         <div className="VideoCard">
-            <Link to={`/videos/${id}`}>
+            <Link to={`/videos/${_id}`}>
                 <div className="card-video">
                     <div className="card-video__thumbnail__wrapper">
                         <img

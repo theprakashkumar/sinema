@@ -4,15 +4,28 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
+import { DataProvider } from "./contexts/DataContext";
+import { LikedProvider } from "./contexts/LikedContext";
+import { WatchLaterContextProvider } from "./contexts/WatchLaterContext";
+import { AuthProvider } from "./contexts/AuthContext";
+
 import axios from "axios";
 
+// axios.defaults.baseURL = "https://Caffe-Backend.theprakashkumar.repl.co";
 axios.defaults.baseURL = "http://localhost:5000";
-
 
 ReactDOM.render(
     <React.StrictMode>
         <Router>
-            <App />
+            <DataProvider>
+                <LikedProvider>
+                    <WatchLaterContextProvider>
+                        <AuthProvider>
+                            <App />
+                        </AuthProvider>
+                    </WatchLaterContextProvider>
+                </LikedProvider>
+            </DataProvider>
         </Router>
     </React.StrictMode>,
     document.getElementById("root")
