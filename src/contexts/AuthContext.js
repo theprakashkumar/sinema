@@ -39,8 +39,6 @@ export const AuthProvider = ({ children }) => {
                         email: response.data.email,
                         token: response.data.token,
                     });
-                    console.log("use", userDetails.userId);
-                    console.log("use", userDetails);
                     localStorage?.setItem(
                         "login",
                         JSON.stringify({
