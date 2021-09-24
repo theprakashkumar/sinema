@@ -22,8 +22,6 @@ function App() {
         try {
             const response = await axios.get("/video");
             if (response.data.success) {
-                console.log("got data");
-                console.log(response.data.video);
                 setVideo(response.data.video);
             }
         } catch (err) {
@@ -31,62 +29,10 @@ function App() {
         }
     };
 
-    // get cart data from server and save them in context
-    // const getCart = async () => {
-    //     try {
-    //         const response = await axios.get(`/cart/${userId}`, {
-    //             headers: {
-    //                 authorization: token,
-    //             },
-    //         });
-    //         if (response.data.success) {
-    //             cartDispatch({
-    //                 type: "SYNC_CART",
-    //                 payload: {
-    //                     product: response.data.cart.cartItems,
-    //                 },
-    //             });
-    //         }
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
-
-    // get wishlist data from the server and save them in context
-    // const getWishlist = async () => {
-    //     try {
-    //         const response = await axios.get(`/wishlist/${userId}`, {
-    //             headers: {
-    //                 authorization: token,
-    //             },
-    //         });
-    //         if (response.data.success) {
-    //             wishlistDispatch({
-    //                 type: "SYNC_WISHLIST",
-    //                 payload: {
-    //                     product: response.data.wishlist.wishlistItems,
-    //                 },
-    //             });
-    //         }
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
-
     useEffect(() => {
         getVideo();
-        // if (isUserLogin) {
-        //     getWishlist();
-        //     getCart();
-        // }
     }, []);
 
-    // useEffect(() => {
-    //     if (isUserLogin) {
-    //         getWishlist();
-    //         getCart();
-    //     }
-    // }, [isUserLogin]);
     return (
         <div className="App">
             <Nav />

@@ -1,9 +1,9 @@
 const LikedAndLaterReducer = (state, action) => {
     switch (action.type) {
         case "SYNC":
-            return [...action.payload.video];
+            return [...action.payload];
         case "ADD":
-            return [...state, { id: action.payload.video }];
+            return [...state, action.payload.video ];
         case "REMOVE":
             return state.filter((video) => video.id !== action.payload.id);
         default:
