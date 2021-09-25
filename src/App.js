@@ -12,10 +12,14 @@ import SignUp from "./components/SignUp";
 import Footer from "./components/Footer";
 import { useEffect, useContext } from "react";
 import { DataContext } from "./contexts/DataContext";
+import { LikedContext } from "./contexts/LikedContext";
 import axios from "axios";
+import { AuthContext } from "./contexts/AuthContext";
 
 function App() {
     const { video, setVideo } = useContext(DataContext);
+    const { isUserLogin, token, userId } = useContext(AuthContext);
+    const { dispatch: likedDispatch } = useContext(LikedContext);
 
     // get video from server
     const getVideo = async () => {
@@ -29,8 +33,27 @@ function App() {
         }
     };
 
+    const getLiked = async () => {
+        try {
+            const response = await axios.get(`/liked/${userId}`, {
+                headers: {
+                    authorization: token,
+                },
+            });
+            if (response.data.success) {
+                likedDispatch({
+                    type: "SYNC",
+                    payload: response.data.liked.likedVideos,
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     useEffect(() => {
         getVideo();
+        getLiked();
     }, []);
 
     return (

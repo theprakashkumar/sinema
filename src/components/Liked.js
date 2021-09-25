@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { LikedContext } from "../contexts/LikedContext";
+import LikedCard from "./LikedCard";
 
 const Liked = () => {
     const [loading, setLoading] = useState(true);
@@ -16,6 +17,7 @@ const Liked = () => {
                 },
             });
             if (response.data.success) {
+                console.log(response.data.success);
                 console.log(response.data.liked.likedVideos);
                 dispatch({
                     type: "SYNC",
@@ -38,18 +40,7 @@ const Liked = () => {
             ) : state[0] ? (
                 state.map((video) => (
                     <div>
-                        <div>{video}</div>
-                        {/* <div>{video.name}</div> */}
-                        <button
-                            onClick={() =>
-                                dispatch({
-                                    type: "REMOVE",
-                                    payload: { id: video.id },
-                                })
-                            }
-                        >
-                            Delete
-                        </button>
+                        <LikedCard {...video} />
                     </div>
                 ))
             ) : (

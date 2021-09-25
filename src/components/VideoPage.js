@@ -23,8 +23,10 @@ const VideoPage = () => {
     const inLiked = (id) => {
         const alreadyInLiked = likedState.find((video) => video?._id === id);
         if (alreadyInLiked) {
-            setIsVideoInLiked(true);
+            console.log("in liked");
+            return setIsVideoInLiked(true);
         }
+        console.log("not in liked");
     };
 
     const inLater = (id) => {
@@ -157,9 +159,9 @@ const VideoPage = () => {
         inLater(id);
     }, []);
 
-    useEffect(() => {
-        inLiked(id);
-    }, [likedState]);
+    // useEffect(() => {
+    //     inLiked(id);
+    // }, [likedState]);
 
     useEffect(() => {
         inLater(id);
