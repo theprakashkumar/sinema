@@ -2,15 +2,15 @@ import axios from "axios";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
-import { LikedContext } from "../contexts/LikedContext";
+import { WatchLaterContext } from "../contexts/WatchLaterContext";
 
-const LikedCard = ({ _id, thumbnail, name }) => {
-    const { state, dispatch } = useContext(LikedContext);
+const WatchLaterCard = ({ _id, thumbnail, name }) => {
+    const { state, dispatch } = useContext(WatchLaterContext);
     const { token, userId } = useContext(AuthContext);
 
-    const removeFromLiked = async () => {
+    const removeFromLater = async () => {
         try {
-            const response = await axios.delete(`/liked/${userId}`, {
+            const response = await axios.delete(`/later/${userId}`, {
                 headers: {
                     authorization: token,
                 },
@@ -22,7 +22,7 @@ const LikedCard = ({ _id, thumbnail, name }) => {
                 console.log("Deleted");
                 dispatch({
                     type: "SYNC",
-                    payload: response.data.liked.likedVideos,
+                    payload: response.data.later.watchLaterVideos,
                 });
             }
         } catch (error) {
@@ -45,9 +45,9 @@ const LikedCard = ({ _id, thumbnail, name }) => {
                     <div className="card-video__title">{name}</div>
                 </div>
             </Link>
-            <button onClick={() => removeFromLiked()}>Remove</button>
+            <button onClick={() => removeFromLater()}>Remove</button>
         </div>
     );
 };
 
-export default LikedCard;
+export default WatchLaterCard;
