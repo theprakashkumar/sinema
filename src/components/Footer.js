@@ -11,10 +11,10 @@ const Footer = () => {
                         <Link to="/">
                             <div className="footer__link mt-0-5">Home</div>
                         </Link>
-                        <Link to="/wishlist">
+                        <Link to="/liked">
                             <div className="footer__link mt-1">Liked</div>
                         </Link>
-                        <Link to="/cart">
+                        <Link to="/later">
                             <div className="footer__link mt-0-5">Later</div>
                         </Link>
                     </div>
