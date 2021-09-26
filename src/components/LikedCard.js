@@ -1,3 +1,4 @@
+import "./LikedCard.css";
 import axios from "axios";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -42,10 +43,15 @@ const LikedCard = ({ _id, thumbnail, name }) => {
                     </div>
                 </div>
                 <div className="video-cart__text__wrapper">
-                    <div className="card-video__title">{name}</div>
+                    <div className="card-video__title mt-1">{name}</div>
                 </div>
             </Link>
-            <button onClick={() => removeFromLiked()}>Remove</button>
+            <button
+                className="btn liked-btn mt-1"
+                onClick={() => removeFromLiked()}
+            >
+                Remove
+            </button>
         </div>
     );
 };

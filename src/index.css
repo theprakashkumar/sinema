@@ -1,1 +1,14 @@
+/* Liked and Later Card */
+.VideoCard {
+    padding: 1rem;
+}
 
+.liked-btn {
+    max-width: 35rem;
+    width: 90%;
+    padding: 0.8rem 2.5rem;
+}
+
+.liked-btn:hover {
+    background: var(--error-dark);
+}

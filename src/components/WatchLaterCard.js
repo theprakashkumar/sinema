@@ -45,7 +45,12 @@ const WatchLaterCard = ({ _id, thumbnail, name }) => {
                     <div className="card-video__title">{name}</div>
                 </div>
             </Link>
-            <button onClick={() => removeFromLater()}>Remove</button>
+            <button
+                className="btn liked-btn mt-1"
+                onClick={() => removeFromLater()}
+            >
+                Remove
+            </button>
         </div>
     );
 };
