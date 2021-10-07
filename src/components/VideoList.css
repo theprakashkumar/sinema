@@ -1,0 +1,28 @@
+video-list-container {
+    min-height: 90vh;
+}
+
+.video-list {
+    margin: 1rem auto 3rem auto;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3, 35rem);
+}
+
+@media screen and (max-width: 1050px) {
+    .video-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .video-list {
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+    }
+}
+@media screen and (max-width: 450px) {
+    .video-list {
+        grid-template-columns: auto;
+    }
+}
