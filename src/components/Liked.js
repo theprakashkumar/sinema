@@ -1,9 +1,12 @@
+import "./Liked.css";
+import "./Liked.css";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { LikedContext } from "../contexts/LikedContext";
 import LikedCard from "./LikedCard";
 import EmptyLiked from "./EmptyLiked";
+import Loading from "./Loading";
 
 const Liked = () => {
     const [loading, setLoading] = useState(true);
@@ -35,15 +38,15 @@ const Liked = () => {
         getLiked();
     }, []);
     return (
-        <div>
+        <div className="liked">
             {loading ? (
-                <p>loading</p>
+                <Loading />
             ) : state[0] ? (
-                state.map((video) => (
-                    <div>
+                <div className="liked-card-container">
+                    {state.map((video) => (
                         <LikedCard {...video} />
-                    </div>
-                ))
+                    ))}
+                </div>
             ) : (
                 <EmptyLiked />
             )}
