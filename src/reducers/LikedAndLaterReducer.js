@@ -3,9 +3,11 @@ const LikedAndLaterReducer = (state, action) => {
         case "SYNC":
             return [...action.payload];
         case "ADD":
-            return [...state, action.payload.video ];
+            return [...state, action.payload.video];
         case "REMOVE":
             return state.filter((video) => video.id !== action.payload.id);
+        case "RESET":
+            return [];
         default:
             return state;
     }

@@ -1,6 +1,8 @@
 import "./Login.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import { WatchLaterContext } from "../contexts/WatchLaterContext";
+import { LikedContext } from "../contexts/LikedContext";
 import { Link } from "react-router-dom";
 import Avatar from "../assets/account_circle_black_48dp.svg";
 
@@ -11,6 +13,8 @@ const Login = () => {
     const { isUserLogin, name, loginWithCredential, logout } =
         useContext(AuthContext);
 
+    const { dispatch: watchLaterDispatch } = useContext(WatchLaterContext);
+    const { dispatch: likedDispatch } = useContext(LikedContext);
     const [credential, setCredential] = useState({ email: "", password: "" });
 
     const handleChange = (e) => {
@@ -38,6 +42,16 @@ const Login = () => {
         }
     };
 
+    const handleLogout = () => {
+        watchLaterDispatch({
+            type: "RESET",
+        });
+        likedDispatch({
+            type: "RESET",
+        });
+        logout();
+    };
+
     return (
         <div className="login">
             {isUserLogin ? (
@@ -48,7 +62,7 @@ const Login = () => {
                         alt="Avatar Logo"
                     />
                     <div className="heading--h6 mt-1 mb-1">Hi {name}!</div>
-                    <button className="btn" onClick={logout}>
+                    <button className="btn" onClick={handleLogout}>
                         Logout
                     </button>
                 </div>
