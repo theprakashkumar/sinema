@@ -21,6 +21,7 @@
         justify-items: center;
     }
 }
+
 @media screen and (max-width: 450px) {
     .later-card-container {
         grid-template-columns: auto;

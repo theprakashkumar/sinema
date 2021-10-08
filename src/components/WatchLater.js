@@ -5,6 +5,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { WatchLaterContext } from "../contexts/WatchLaterContext";
 import WatchLaterCard from "./WatchLaterCard";
 import EmptyWatchLater from "./EmptyWatchLater";
+import Loading from "./Loading";
 
 const WatchLater = () => {
     const { state, dispatch } = useContext(WatchLaterContext);
@@ -38,7 +39,7 @@ const WatchLater = () => {
     return (
         <div className="later">
             {loading ? (
-                <p>Loading</p>
+                <Loading />
             ) : state[0] ? (
                 <div className="later-card-container">
                     {state.map((video) => (
