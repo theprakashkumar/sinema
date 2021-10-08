@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { LikedContext } from "../contexts/LikedContext";
 import LikedCard from "./LikedCard";
+import EmptyLiked from "./EmptyLiked";
 
 const Liked = () => {
     const [loading, setLoading] = useState(true);
@@ -44,7 +45,7 @@ const Liked = () => {
                     </div>
                 ))
             ) : (
-                <p>Nothing</p>
+                <EmptyLiked />
             )}
         </div>
     );

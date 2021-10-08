@@ -12,7 +12,7 @@ const EmptyLater = () => {
             />
             <div className="heading--h6">I am empty :(</div>
             <div>Your Watch Later is Empty</div>
-            <Link className="btn btn--link link" to="/later">
+            <Link className="btn btn--link link" to="/videos">
                 Go to Catalog
             </Link>
         </div>
