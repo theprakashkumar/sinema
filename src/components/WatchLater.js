@@ -1,3 +1,4 @@
+import "./WatchLater.css";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
@@ -35,11 +36,15 @@ const WatchLater = () => {
         getLater();
     }, []);
     return (
-        <div>
+        <div className="later">
             {loading ? (
                 <p>Loading</p>
             ) : state[0] ? (
-                state.map((video) => <WatchLaterCard {...video} />)
+                <div className="later-card-container">
+                    {state.map((video) => (
+                        <WatchLaterCard {...video} />
+                    ))}
+                </div>
             ) : (
                 <EmptyWatchLater />
             )}

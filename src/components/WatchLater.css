@@ -1,0 +1,28 @@
+.later {
+    min-height: 90vh;
+}
+
+.later-card-container {
+    margin: 1rem auto 3rem auto;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3, 35rem);
+}
+
+@media screen and (max-width: 1050px) {
+    .later-card-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .later-card-container {
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+    }
+}
+@media screen and (max-width: 450px) {
+    .later-card-container {
+        grid-template-columns: auto;
+    }
+}
