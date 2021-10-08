@@ -1,5 +1,5 @@
 import "./Nav.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Nav = () => {
     return (
@@ -9,29 +9,29 @@ const Nav = () => {
             </Link>
 
             <div className="nav__menu">
-                <Link className="nav__item" to="/liked">
+                <NavLink className="nav__item" activeClassName="nav__item-active" to="/liked">
                     <div class="icon-with-badge">
                         <span class="material-icons-outlined icon-with-badge__icon">
                             favorite
                         </span>
                     </div>
-                </Link>
+                </NavLink>
 
-                <Link className="nav__item" to="/later">
+                <NavLink className="nav__item" activeClassName="nav__item-active" to="/later">
                     <div class="icon-with-badge">
                         <span class="material-icons-outlined icon-with-badge__icon">
                             bookmark
                         </span>
                     </div>
-                </Link>
+                </NavLink>
 
-                <Link className="nav__item" to="/login">
+                <NavLink className="nav__item" activeClassName="nav__item-active" to="/login">
                     <div class="icon-with-badge">
                         <span class="material-icons icon-with-badge__icon">
                             person
                         </span>
                     </div>
-                </Link>
+                </NavLink>
             </div>
         </div>
     );

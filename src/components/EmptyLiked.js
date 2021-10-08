@@ -1,6 +1,6 @@
 import "./EmptyLiked.css";
 import { Link } from "react-router-dom";
-import emptyLiked from "../assets/bookmark_add_black_48dp.svg";
+import emptyLiked from "../assets/heart_broken_black_48dp.svg";
 const EmptyLiked = () => {
     return (
         <div className="empty-liked flex flex-dir-cl flex-align-center">
