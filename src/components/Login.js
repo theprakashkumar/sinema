@@ -4,26 +4,40 @@ import { AuthContext } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import Avatar from "../assets/account_circle_black_48dp.svg";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Login = () => {
     const { isUserLogin, name, loginWithCredential, logout } =
         useContext(AuthContext);
 
-    const [input, setInput] = useState({
-        email: "",
-        password: "",
-    });
+    const [credential, setCredential] = useState({ email: "", password: "" });
 
     const handleChange = (e) => {
-        setInput((input) => ({
-            ...input,
+        setCredential((credential) => ({
+            ...credential,
             [e.target.name]: e.target.value,
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        loginWithCredential(input.email, input.password);
+        const loginStatus = await loginWithCredential(
+            credential.email,
+            credential.password
+        );
+
+        if (loginStatus === 403) {
+            toast.error("Wrong Password!", {
+                position: toast.POSITION.BOTTOM_CENTER,
+            });
+        } else if (loginStatus === 401) {
+            toast.error("User Not Found!", {
+                position: toast.POSITION.BOTTOM_CENTER,
+            });
+        }
     };
+
     return (
         <div className="login">
             {isUserLogin ? (
@@ -49,7 +63,7 @@ const Login = () => {
                                 className="input-text input-text-email"
                                 type="text"
                                 placeholder="Email"
-                                value={input.email}
+                                value={credential.email}
                                 name="email"
                                 onChange={handleChange}
                             />
@@ -60,7 +74,7 @@ const Login = () => {
                                 class="input-text input-text-password"
                                 type="password"
                                 placeholder="Password"
-                                value={input.password}
+                                value={credential.password}
                                 name="password"
                                 onChange={handleChange}
                             />
@@ -79,6 +93,7 @@ const Login = () => {
                     </form>
                 </div>
             )}
+            <ToastContainer />
         </div>
     );
 };

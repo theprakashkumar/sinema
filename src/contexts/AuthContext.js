@@ -53,8 +53,10 @@ export const AuthProvider = ({ children }) => {
                     );
                 }
                 navigate(state?.from ? state.from : "/");
+                return response.data.status;
             } catch (error) {
                 console.log("Something Went Wrong!", error);
+                return error.response.status;
             }
         }
     };
