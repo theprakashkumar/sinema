@@ -1,0 +1,15 @@
+.empty-later {
+    width: max-content;
+    margin: 5rem auto;
+    min-height: 80vh;
+}
+
+.empty-later__image {
+    display: block;
+    width: 15rem;
+    height: auto;
+}
+
+.link {
+    text-decoration: none;
+}

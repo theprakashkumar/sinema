@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { WatchLaterContext } from "../contexts/WatchLaterContext";
 import WatchLaterCard from "./WatchLaterCard";
+import EmptyWatchLater from "./EmptyWatchLater";
 
 const WatchLater = () => {
     const { state, dispatch } = useContext(WatchLaterContext);
@@ -40,7 +41,7 @@ const WatchLater = () => {
             ) : state[0] ? (
                 state.map((video) => <WatchLaterCard {...video} />)
             ) : (
-                <p>Nothing</p>
+                <EmptyWatchLater />
             )}
         </div>
     );
