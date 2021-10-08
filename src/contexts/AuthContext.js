@@ -76,10 +76,11 @@ export const AuthProvider = ({ children }) => {
             if (response.data.success) {
                 console.log("New User Created!");
                 // ! USER NEED TO BE LOGGED IN HERE!
-                navigate("/");
+                navigate("/login");
             }
         } catch (error) {
             console.log("Error While Creating New User!", error);
+            return error.response.status;
         }
     };
     return (

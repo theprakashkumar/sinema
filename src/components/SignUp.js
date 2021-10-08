@@ -2,6 +2,9 @@ import "./SignUp.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const initialUserDetails = {
     name: "",
     email: "",
@@ -11,9 +14,19 @@ const initialUserDetails = {
 const SignUp = () => {
     const [userDetails, setUserDetails] = useState(initialUserDetails);
     const { signUp } = useContext(AuthContext);
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        signUp(userDetails);
+        const signUpStatus = await signUp(userDetails);
+        if (signUpStatus === 409) {
+            toast.error("User Already Exits!", {
+                position: toast.POSITION.BOTTOM_CENTER,
+            });
+        } else if (signUpStatus === 200) {
+            toast.success("User Created!", {
+                position: toast.POSITION.BOTTOM_CENTER,
+            });
+        }
     };
 
     const handleChange = (e) => {
@@ -68,6 +81,7 @@ const SignUp = () => {
                     </button>
                 </form>
             </div>
+            <ToastContainer />
         </div>
     );
 };
