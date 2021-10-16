@@ -42,7 +42,7 @@ const WatchLaterCard = ({ _id, thumbnail, name }) => {
                     </div>
                 </div>
                 <div className="video-cart__text__wrapper">
-                    <div className="card-video__title">{name}</div>
+                    <div className="card-video__title mt-1 fs-2r">{name}</div>
                 </div>
             </Link>
             <button

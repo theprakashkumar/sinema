@@ -7,6 +7,9 @@
     max-width: 35rem;
     width: 90%;
     padding: 0.8rem 2.5rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .liked-btn:hover {

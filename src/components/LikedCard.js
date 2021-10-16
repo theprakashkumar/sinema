@@ -43,7 +43,7 @@ const LikedCard = ({ _id, thumbnail, name }) => {
                     </div>
                 </div>
                 <div className="video-cart__text__wrapper">
-                    <div className="card-video__title mt-1">{name}</div>
+                    <div className="card-video__title mt-1 fs-2">{name}</div>
                 </div>
             </Link>
             <button
