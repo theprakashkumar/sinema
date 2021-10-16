@@ -1,8 +1,5 @@
-video-list-container {
-    min-height: 90vh;
-}
-
 .video-list {
+    min-height: 90vh;
     margin: 1rem auto 3rem auto;
     display: grid;
     justify-content: center;
