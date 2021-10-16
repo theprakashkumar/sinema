@@ -5,11 +5,13 @@ import { LikedContext } from "../contexts/LikedContext";
 import { WatchLaterContext } from "../contexts/WatchLaterContext";
 import axios from "axios";
 import { AuthContext } from "../contexts/AuthContext";
+import Loading from "./Loading";
 
 const VideoPage = () => {
     const { isUserLogin, userId, email, token } = useContext(AuthContext);
 
     const { id } = useParams();
+    const [loading, setLoading] = useState(true);
     const [video, setVideo] = useState(null);
     const { state: likedState, dispatch: likedDispatch } =
         useContext(LikedContext);
@@ -99,7 +101,6 @@ const VideoPage = () => {
 
     const removeFromLiked = async (id) => {
         try {
-            console.log(id);
             const response = await axios.delete(`/liked/${userId}`, {
                 headers: {
                     authorization: token,
@@ -147,8 +148,8 @@ const VideoPage = () => {
             try {
                 const response = await axios.get(`/video/${id}`);
                 if (response.data.success) {
-                    console.log(response.data.video);
                     setVideo(response.data.video);
+                    setLoading(false);
                 }
             } catch (error) {
                 console.log(error);
@@ -159,42 +160,68 @@ const VideoPage = () => {
         inLater(id);
     }, []);
 
-    // useEffect(() => {
-    //     inLiked(id);
-    // }, [likedState]);
-
     useEffect(() => {
         inLater(id);
     }, [laterState]);
 
     return (
-        <div className="video-responsive">
-            <iframe
-                width="853"
-                height="480"
-                src={`https://www.youtube.com/embed/${video?.embedId}`}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="Embedded youtube"
-            />
-
-            {/* ! Put Video Details Here */}
-
-            <button
-                onClick={() => {
-                    isUserLogin ? addToLiked(id) : navigate("/login");
-                }}
-            >
-                {isVideoInLiked ? "Liked" : "Like"}
-            </button>
-            <button
-                onClick={() => {
-                    isUserLogin ? addToLater(id) : navigate("/login");
-                }}
-            >
-                {isVideoInLater ? "Added to Watch Later" : "Add to Watch Later"}
-            </button>
+        <div className="video-page-container">
+            {loading ? (
+                <Loading />
+            ) : (
+                <div className="video-page">
+                    <div className="video-page__video-container">
+                        <iframe
+                            src={`https://www.youtube.com/embed/${video.embedId}`}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            title="Embedded youtube"
+                            className="video-page__video"
+                        />
+                    </div>
+                    <div className="video-page__heading heading--h6 mt-1">
+                        {video.name}
+                    </div>
+                    <div className="video-page__button-container">
+                        <div className="video-page__button__views">
+                            {video.views} Views
+                        </div>
+                        <button
+                            className="btn btn--icon btn--sm ml-auto video-page__button"
+                            onClick={() => {
+                                isUserLogin
+                                    ? addToLiked(id)
+                                    : navigate("/login");
+                            }}
+                        >
+                            <span class="material-icons-outlined btn--icon__icon">
+                                favorite
+                            </span>
+                            {isVideoInLiked ? "Liked" : "Like"}
+                        </button>
+                        <button
+                            className="btn btn--icon btn--sm ml-1 video-page__button"
+                            onClick={() => {
+                                isUserLogin
+                                    ? addToLater(id)
+                                    : navigate("/login");
+                            }}
+                        >
+                            <span class="material-icons-outlined btn--icon__icon">
+                                bookmark
+                            </span>
+                            {isVideoInLater
+                                ? "Added to Watch Later"
+                                : "Add to Watch Later"}
+                        </button>
+                    </div>
+                    <div className="video-page__description mt-1 mb-2">
+                        <div className="heading heading--h6">Description</div>
+                        <div>{video.description}</div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

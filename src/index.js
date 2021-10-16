@@ -11,8 +11,8 @@ import { AuthProvider } from "./contexts/AuthContext";
 
 import axios from "axios";
 
-// axios.defaults.baseURL = "https://Caffe-Backend.theprakashkumar.repl.co";
-axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = "https://Sinema-Backend.theprakashkumar.repl.co";
+// axios.defaults.baseURL = "http://localhost:5000";
 
 ReactDOM.render(
     <React.StrictMode>
