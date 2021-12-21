@@ -1,8 +1,20 @@
-# sinema
+# Sinema
 
-Features:
+## Sinema is a Video Compoent Library.
 
--   Show notification based on the status code received from the server. Like User Not Found, Wrong password.
+### Tech Stack
+
+-   React(Hooks)
+-   Express.js
+-   MongoDB
+-   React Router
+-   JWT
+
+Live Preview: https://sinemaindia.netlify.app/
+
+Backend Hosted: https://Sinema-Backend.theprakashkumar.repl.co
+
+Backend Code: https://github.com/ThePrakashKumar/Sinema-Backend/tree/dev
 
 Credits:
 
