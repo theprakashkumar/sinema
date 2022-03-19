@@ -42,6 +42,13 @@ const Login = () => {
         }
     };
 
+    const guestLogin = async () => {
+        await loginWithCredential(
+            "guest@gmail.com",
+            "guest"
+        );
+    }
+
     const handleLogout = () => {
         watchLaterDispatch({
             type: "RESET",
@@ -94,17 +101,25 @@ const Login = () => {
                             />
                         </div>
 
-                        <button class="btn btn--md login-btn mt-1 mb-1">
+                        <button class="btn btn--md login-btn login-btn-dark mt-1 mb-1">
                             LOGIN
                         </button>
 
-                        <Link
-                            className="btn btn--link login-btn-link"
-                            to="/signup"
-                        >
-                            Don't Have Account Create One!
-                        </Link>
                     </form>
+
+                    <button
+                        onClick={guestLogin}
+                        className="btn btn--md login-btn mb-1"
+                    >
+                        Login as Guest
+                    </button>
+
+                    <Link
+                        className="btn btn--link login-btn-link"
+                        to="/signup"
+                    >
+                        Don't Have Account Create One!
+                    </Link>
                 </div>
             )}
             <ToastContainer />
